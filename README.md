@@ -1,6 +1,7 @@
-# hungman_game
+# Hungman_Game
 
-A new Flutter project.
+Description:
+##Hangman is a playful activity whose ultimate objective is to guess a word secretly chosen by the judge or opponent.
 
 ## Getting Started
 
