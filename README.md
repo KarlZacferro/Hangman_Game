@@ -1,6 +1,6 @@
 # Hungman_Game
 
-### Hangman is a playful activity whose ultimate objective is to guess a word secretly chosen by the judge or opponent.
+#### Hangman is a playful activity whose ultimate objective is to guess a word secretly chosen by the judge or opponent.
 
 ## Getting Started
 
