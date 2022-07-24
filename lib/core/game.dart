@@ -1,5 +1,6 @@
-//criação
+//create
 class Game {
-  //vai construir a figura de acordo com as tentativas
+  //construction of the figure according to the attempts
   static int tentativas = 0;
+  static List<String> selectedChar = [];
 }
