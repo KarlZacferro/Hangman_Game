@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hungman_game/core/alphabets.dart';
+import 'package:hungman_game/core/words.dart';
 import '../core/game.dart';
+import '../core/words.dart';
 import '../ui/colors.dart';
 import '../widget/figure_image.dart';
 import '../widget/keyboard.dart';
@@ -14,7 +15,7 @@ class GameScreen extends StatefulWidget {
 
 class __GameScreenState extends State<GameScreen> {
 //teste
-  String word = "Flutter";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,7 @@ class __GameScreenState extends State<GameScreen> {
                   width: MediaQuery.of(context).size.width / 3.5,
                   decoration: BoxDecoration(color: Colors.white),
                   height: 30,
-                  child: Text("12 pontos",
+                  child: Text("12- Score",
                       style: TextStyle(fontWeight: FontWeight.w700)),
                 ),
                 Row(
@@ -56,7 +57,7 @@ class __GameScreenState extends State<GameScreen> {
                       Center(
                         child: Stack(
                           children: [
-                            //a utlização do widget figure
+                            //the utilization widget figure
                             figureImage(
                                 Game.tentativas >= 0, "assets/hang.png"),
                             figureImage(
@@ -78,9 +79,8 @@ class __GameScreenState extends State<GameScreen> {
                   "7 tentativas",
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
-
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 //Creating the hidden word widget interacting with the game class
                 Row(
@@ -91,10 +91,16 @@ class __GameScreenState extends State<GameScreen> {
                           !Game.selectedChar.contains(e.toUpperCase())))
                       .toList(),
                 ),
+                //keyboard
+                SizedBox(
+                  height: 20,
+                ),
                 GridView.count(
                   crossAxisCount: 7,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.only(right: 10),
+                  childAspectRatio: 1.3,
                   children: alphabets.map((e) {
                     return RawMaterialButton(
                       onPressed: Game.selectedChar.contains(e)
