@@ -5,6 +5,7 @@ import '../core/words.dart';
 import '../ui/colors.dart';
 import '../widget/figure_image.dart';
 import '../widget/keyboard.dart';
+import 'dart:math';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -15,6 +16,58 @@ class GameScreen extends StatefulWidget {
 
 class __GameScreenState extends State<GameScreen> {
 //teste
+  int score = 0;
+  final game = Game();
+
+  String word = wordlist[Random().nextInt(wordlist.length)];
+  List guessedalphabets = [];
+  int status = 0;
+
+  String handletext() {
+    String displayword = "";
+//Cycles through and captures each character of the word and checks if it's in the list(wordlist)
+    for (int i = 0; i < word.length; i++) {
+      String char = word[i];
+      //check if it contains the character
+      if (guessedalphabets.contains(char)) {
+        displayword += char + " ";
+      } else {
+        displayword += " ";
+      }
+    }
+    return displayword;
+  }
+
+  checkletter(String alphabets) {
+    //check word selection and add a list++
+    if (word.contains(alphabets)) {
+      setState(() {
+        guessedalphabets.add(alphabets);
+        score += 5;
+      });
+    } else if (status != 6) {
+      setState(() {
+        status += 1;
+        score -= 5;
+      });
+    } else {
+      print("Você perdeu");
+    }
+
+    bool Won = true;
+    for (int i = 0; i < word.length; i++) {
+      String char = word[i];
+      //check if it contains the character
+      if (!guessedalphabets.contains(char)) {
+        Won = false;
+        break;
+      }
+    }
+    if (Won) {
+      print("Você Venceu");
+    }
+    return score;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +100,7 @@ class __GameScreenState extends State<GameScreen> {
                   width: MediaQuery.of(context).size.width / 3.5,
                   decoration: BoxDecoration(color: Colors.white),
                   height: 30,
-                  child: Text("12- Score",
+                  child: Text("$score",
                       style: TextStyle(fontWeight: FontWeight.w700)),
                 ),
                 Row(
@@ -76,7 +129,7 @@ class __GameScreenState extends State<GameScreen> {
                   height: 20,
                 ),
                 Text(
-                  "7 tentativas",
+                  "${status} tentativas",
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 SizedBox(
@@ -107,6 +160,7 @@ class __GameScreenState extends State<GameScreen> {
                           ? null //checking if the button was selected before
                           : () {
                               setState(() {
+                                score += 5;
                                 Game.selectedChar.add(e);
                                 print(Game.selectedChar);
                                 if (!word.split('').contains(e.toUpperCase())) {
@@ -130,7 +184,14 @@ class __GameScreenState extends State<GameScreen> {
                           : AppThemeColor.primaryColorDark,
                     );
                   }).toList(),
-                )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Karlisson Brendo",
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
               ],
             ),
           ),
