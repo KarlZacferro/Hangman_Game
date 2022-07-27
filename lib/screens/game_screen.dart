@@ -189,7 +189,7 @@ class __GameScreenState extends State<GameScreen> {
                   height: 20,
                 ),
                 Text(
-                  "Karlisson Brendo",
+                  "© Karlisson Brendo",
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
               ],
